@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+	<title>购物车</title>
+	<link rel="stylesheet" type="text/css" href="./css/cart.css" />
+	<link rel="stylesheet" href="./lib/iconfont/iconfont.css">
+</head>
+
+<body>
+	<div class="body">
+		<div class="shop"><i class="iconfont icon-fanhui"></i><span>我的购物车</span></div>
+		<div class="product">
+			<div class="product-box">
+				<div class="product-ckb">
+					<em class="product-em product-xz"></em>
+				</div>
+				<div class="product-sx">
+					<a href="###">
+						<img src="img/a3.png" class="product-img" />
+						<span class="product-name">酷冷至尊(Cooler Master)T610P CPU风冷散热器</span>
+					</a>
+					<span class="product-price">¥&thinsp;<span class="price">296</span></span>
+					<div class="product-amount">
+						<div class="product_gw">
+							<em class="product-jian">-</em>
+							<input type="text" value="1" class="product-num" />
+							<em class="product-add">+</em>
+						</div>
+					</div>
+					<div class="product-del">
+						<span class="iconfont icon-shanchu"></span>
+					</div>
+				</div>
+			</div>
+			<div class="product-box">
+				<div class="product-ckb"><em class="product-em"></em></div>
+				<div class="product-sx">
+					<a href="###">
+						<img src="img/a1.png" class="product-img" />
+						<span class="product-name">游戏悍将 35英寸曲面电竞显示器21:9带鱼屏准4K游戏显示器</span>
+					</a>
+					<span class="product-price">¥&thinsp;<span class="price">296</span></span>
+					<div class="product-amount">
+						<div class="product_gw">
+							<em class="product-jian">-</em>
+							<input type="text" value="1" class="product-num" />
+							<em class="product-add">+</em>
+						</div>
+					</div>
+					<div class="product-del">
+						<span class="iconfont icon-shanchu"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="product-box">
+				<div class="product-ckb"><em class="product-em"></em></div>
+				<div class="product-sx">
+					<a href="###">
+						<img src="img/a2.png" class="product-img" />
+						<span class="product-name">技嘉（GIGABYTE） 2080TURBO OC 8GC</span>
+					</a>
+					<span class="product-price">¥&thinsp;<span class="price">296</span></span>
+					<div class="product-amount">
+						<div class="product_gw">
+							<em class="product-jian">-</em>
+							<input type="text" value="1" class="product-num" />
+							<em class="product-add">+</em>
+						</div>
+					</div>
+					<div class="product-del">
+						<span class="iconfont icon-shanchu"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="product-box">
+				<div class="product-ckb"><em class="product-em"></em></div>
+				<div class="product-sx">
+					<a href="###">
+						<img src="img/a4.png" class="product-img" />
+						<span class="product-name">AMD 锐龙 5 2600X 处理器 (R5) 6核12线程 AM4 </span>
+					</a>
+					<span class="product-price">¥&thinsp;<span class="price">296</span></span>
+					<div class="product-amount">
+						<div class="product_gw">
+							<em class="product-jian">-</em>
+							<input type="text" value="1" class="product-num" />
+							<em class="product-add">+</em>
+						</div>
+					</div>
+					<div class="product-del">
+						<span class="iconfont icon-shanchu"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="product-js">
+			<div class="product-al">
+				<div class="product-all">
+					<em class=""></em>
+				</div>
+				<div class="all-xz"><span class="product-all-qx">全选</span>
+					<div class="all-sl" style="display: none;">(<span class="product-all-sl">0</span>)</div>
+				</div>
+			</div>
+			<a href="order.html" class="product-sett product-sett-a">结算</a>
+			<div class="all-product"><span class="all-product-a">¥&thinsp;<span class="all-price">296</span></span>
+			</div>
+
+		</div>
+	</div>
+	<!--购物车空-->
+	<div class="kon-cat">
+		<div class="catkon">
+			<div class="kon-box">
+				<div class="kon-hz">
+					<img src="img/cart-air.png" />
+					<span class="kon-wz">购物车什么都没有</span>
+					<a href="###" class="kon-lj">去逛逛</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="./lib/jquery.min.js"></script>
+<script src="./lib/templa73pte-web.js"></script>
+<script src="./js/cart.js" type="text/javascript" charset="utf-8"></script>
+<meta http-equiv="Access-Control-Allow-Origin" content="http://www.shop.com/api/cart/add">
+<script>
+	
+	$.ajax({
+		method: 'post',
+		url: 'http://www.shop.com/api/cart/add',
+		data: {
+			//gid:10,
+			price:100,
+			token: localStorage.getItem('token')
+			// token:`eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOjMyMywidXNlcm5hbWUiOiJcdTZmMDZcdTU4ZWJcdTZlZDUiLCJleHAiOjE1OTk4Nzg0NzJ9.huCfc0JOu--TjqC9JjTGa_tR-CHzTa-0RHkDY2sz6r0`
+			// token:1
+		},
+		// dataType:'jsonp',
+		// headers: { 'Authorization': localStorage.getItem('token') },
+		// beforeSend: function (request) {
+		// 	request.setRequestHeader("Authorization", token);
+		// },
+		success: function (res) {
+			console.log(res);
+			// let token = localStorage.getItem('token')
+			// console.log(token);
+		}
+	})
+</script>
+
+</html>

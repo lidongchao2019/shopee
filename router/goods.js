@@ -1,5 +1,5 @@
 const express = require('express');
-const goodsRouterHandler = require('../router_handler/goods');
+const goodsRouterHandler = require('../routerHandler/goods');
 
 const router = express.Router();
 
