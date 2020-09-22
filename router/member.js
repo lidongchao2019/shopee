@@ -3,7 +3,7 @@ const router = express.Router();
 
 const memberHandler = require('../routerHandler/member');
 
-router.get('/member/register', memberHandler.register);
-router.get('/member/login', memberHandler.login);
+router.post('/member/register', memberHandler.register);
+router.post('/member/login', memberHandler.login);
 
 module.exports = router;

@@ -1,15 +1,11 @@
 const express = require('express');
-
-const cartRouterHandler = require('../routerHandler/cart');
-
 const router = express.Router();
 
-router.get('/cart/add', cartRouterHandler.add);
+const cartHandler = require('../routerHandler/cart');
 
-router.get('/cart/getlist', cartRouterHandler.getlist);
-
-router.get('/cart/remove', cartRouterHandler.remove);
-
-router.get('/cart/edit', cartRouterHandler.edit);
+router.get('/cart/add', cartHandler.add);
+router.get('/cart/getlist', cartHandler.getlist);
+router.get('/cart/remove', cartHandler.remove);
+router.get('/cart/edit', cartHandler.edit);
 
 module.exports = router;
