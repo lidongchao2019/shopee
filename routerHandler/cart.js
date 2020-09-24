@@ -1,19 +1,27 @@
-exports.add = (req, res) => {
-    console.log('cart add');
-    res.send('cart add');
-};
+function add(req, res) {
 
-exports.getlist = (req, res) => {
-    console.log('cart getlist');
-    res.send('cart getlist');
-};
+    const db = require('../config/db');
+    const CONFIG = require('../config/config');
 
-exports.remove = (req, res) => {
-    console.log('cart remove');
-    res.send('cart remove');
+
+
 }
 
-exports.edit = (req, res) => {
-    console.log('cart edit');
-    res.send('cart edit');
+function getlist(req, res) {
+
+}
+
+function remove(req, res) {
+
+}
+
+function edit(req, res) {
+
+}
+
+module.exports = {
+    add,
+    getlist,
+    remove,
+    edit
 }
