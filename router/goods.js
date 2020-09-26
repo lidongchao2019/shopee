@@ -1,8 +1,8 @@
 const express = require('express');
-const goodsHandler = require('../routerHandler/goods');
 
 const router = express.Router();
 
+const goodsHandler = require('../routerHandler/goods');
 router.get('/goods/getlist', goodsHandler.getlist);
 router.get('/goods/getinfo', goodsHandler.getinfo);
 

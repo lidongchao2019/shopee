@@ -1,6 +1,7 @@
 function register(req, res) {
 
     const db = require('../config/db');
+    const moment = require('moment');
     const RESULT = require('../config/config');
 
     //生成数据
@@ -8,7 +9,7 @@ function register(req, res) {
         username: req.body.username,
         password: req.body.password,
         email: req.body.email,
-        r_date: ''
+        r_date: moment().format('YYYY-MM-DD')
     }
 
     //检查用户名是否已存在

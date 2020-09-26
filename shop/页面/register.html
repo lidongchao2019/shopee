@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>注册</title>
+	<link rel="stylesheet" href="./css/login.css">
+
+</head>
+
+<body>
+	<div class="lowin">
+		<div class="lowin-brand">
+			<img src="./img/kodinger.jpg" alt="logo">
+		</div>
+		<div class="lowin-wrapper">
+			<div class="lowin-box lowin-register">
+				<div class="lowin-box-inner">
+					<form id="form1">
+						<p>创建账号</p>
+						<div class="lowin-group">
+							<label>用户名</label>
+							<input type="text" name="name" autocomplete="name" class="lowin-input" id="username">
+						</div>
+						<div class="lowin-group">
+							<label>邮箱</label>
+							<input type="email" autocomplete="email" name="email" class="lowin-input" id="useremail">
+						</div>
+						<div class="lowin-group">
+							<label>密码</label>
+							<input type="password" name="password" autocomplete="current-password" class="lowin-input "
+								id="userpsd">
+						</div>
+						<div class="lowin-group">
+							<label>确认密码</label>
+							<input type="password" name="repassword" autocomplete="current-password" class="lowin-input"
+								id="userpsd2">
+						</div>
+						<button class="lowin-btn" id="btn-zc">
+							注册
+						</button>
+
+						<div class="text-foot">
+							已经有账号? <a href="" class="login-link">登录</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<footer class="lowin-footer">
+
+		</footer>
+	</div>
+	<script src="./lib/jquery.min.js"></script>
+	<script src="./lib/template-web.js"></script>
+	<script>
+		var btn_zc = document.querySelector('#btn-zc')
+		btn_zc.addEventListener('click', function (e) {
+			e.preventDefault()
+			$.ajax({
+				method:'post',
+				url: 'http://www.shop.com/api/member/register',
+				data: {
+					username: $('#username').val(),
+					password:$('#userpsd').val(),
+					email:$('#useremail').val()
+				},
+				success: function (res) {
+					console.log(res);
+				}
+			})
+		
+		})
+
+	</script>
+
+</body>
+
+</html>
