@@ -2,9 +2,21 @@
 
 ## 1.1 课程目标
 
+熟练掌握Node.js课程涵盖的知识点
+
+了解后端API项目的开发流程
+
+熟悉接口文档的作用
+
+掌握后端主要业务逻辑的开发流程
+
+具备通过文档开发接口的能力
+
 ## 1.2 涵盖知识点
 
 ## 1.3 参考时间
+
+
 
 # 2 搭建项目框架
 
@@ -189,11 +201,11 @@ C:\Windows\System32\drivers\etc\hosts
 
 # 4 配置路由及路由处理函数
 
-## 3.1 路由模块结构示意图
+## 4.1 路由模块结构示意图
 
 <img src='images/15.png' align='left' />
 
-## 3.2 会员模块路由
+## 4.2 会员模块路由
 
 在`/routerHandler/member.js`文件中，定义会员路由处理函数，代码如下：
 
@@ -224,7 +236,7 @@ router.get('/member/login', memberHandler.login);
 module.exports = router;
 ~~~
 
-## 3.3 商品模块路由
+## 4.3 商品模块路由
 
 在`/routerHandler/goods.js`文件中，定义商品路由处理函数，代码如下：
 
@@ -255,7 +267,7 @@ router.get('/goods/getinfo', goodsHandler.getinfo);
 module.exports = router;
 ~~~
 
-## 3.4 购物车的路由模块
+## 4.4 购物车模块路由
 
 在`/routerHandler/cart.js`文件中，定义购物车模块的路由处理函数，代码如下：
 
@@ -296,7 +308,7 @@ router.get('/cart/edit', cartHandler.edit);
 module.exports = router;
 ~~~
 
-## 3.5 引入路由定义模块 
+## 4.5 引入路由定义模块 
 
 在入口文件`app.js`中，引入以上三个定义路由模块，并定义访问前缀`api`
 
@@ -311,9 +323,9 @@ const cartRouter = require('./router/cart');
 app.use('/api', cartRouter);
 ~~~
 
-# 4 会员模块
+# 5 会员模块
 
-## 4.1 会员数据表
+## 5.1 会员数据表
 
 | 字段     | 数据类型 | 说明             |
 | -------- | -------- | ---------------- |
@@ -324,9 +336,9 @@ app.use('/api', cartRouter);
 | r_date   | 日期时间 | 注册时间         |
 | l_date   | 日期时间 | 最后登录时间     |
 
-## 4.2 会员注册
+## 5.2 会员注册
 
-### 4.2.1 接口功能
+### 5.2.1 接口功能
 
 接口功能：接收用户名、密码、邮箱，完成用户的注册操作
 
@@ -358,14 +370,14 @@ app.use('/api', cartRouter);
 }
 ~~~
 
-### 4.2.2 实现步骤
+### 5.2.2 实现步骤
 
 - [ ] 导入相关模块
 - [ ] 接收参数并验证有效性
 - [ ] 检查用户名是否存在
 - [ ] 插入数据表并返回结果
 
-### 4.2.3 导入相关模块
+### 5.2.3 导入相关模块
 
 ~~~javascript
 const moment = require('moment');
@@ -373,11 +385,11 @@ const db = require('../config/db');
 const CONFIG = require('../config/config');
 ~~~
 
-### 4.2.4 接收参数并验证有效性
+### 5.2.4 接收参数并验证有效性
 
 ~~~javascript
 //接收参数
-const param = {
+const params = {
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
@@ -388,15 +400,15 @@ const param = {
 ......
 ~~~
 
-### 4.2.5 检查用户名是否存在
+### 5.2.5 检查用户名是否存在
 
 ~~~javascript
-let sqlStr = "select id from member where username=?";
-db.query(sqlStr, [param.username], (err, rst) =>{
+let sqlStr = `select id from member where username=${params.username}`;
+db.query(sqlStr, (err, rst) =>{
 });
 ~~~
 
-### 4.2.6 插入数据表并返回结果
+### 5.2.6 插入数据表并返回结果
 
 ~~~javascript
 let sqlStr = "insert into member set ?";
@@ -404,9 +416,9 @@ db.query(sqlStr, param, (err, rst)=>{
 });
 ~~~
 
-## 4.2 会员登录
+## 5.3 会员登录
 
-### 4.2.1 接口功能
+### 5.3.1 接口功能
 
 接口功能：接收用户名和密码，查询该会员是否已经注册，完成登录功能，返回token
 
@@ -439,21 +451,21 @@ db.query(sqlStr, param, (err, rst)=>{
 }
 ~~~
 
-### 4.2.2 实现步骤
+### 5.3.2 实现步骤
 
 - [ ] 导入相关模块
 - [ ] 接收参数并验证有效性
 - [ ] 查询该用户的密码字段
 - [ ] 比对密码生成JWT
 
-### 4.2.3 导入数据库连接对象
+### 5.3.3 导入数据库连接对象
 
 ~~~javascript
 const db = require('../config/db');
 const CONFIG = require('../config/config');
 ~~~
 
-### 4.2.4 接收参数并判断是否有效
+### 5.3.4 接收参数并判断是否有效
 
 ~~~javascript
 const param = {
@@ -462,7 +474,7 @@ const param = {
 };
 ~~~
 
-### 4.2.5 查询该用户的密码字段
+### 5.3.5 查询该用户的密码字段
 
 ~~~javascript
 let sqlStr = "select password from member where username=?";
@@ -470,7 +482,7 @@ db.query(sqlStr, [username], (err, rst)=>{
 });
 ~~~
 
-### 4.2.6 比对密码生成JWT
+### 5.3.6 比对密码生成JWT
 
 ~~~javascript
 //导入jwt模块，生成jwt字符串
@@ -484,9 +496,9 @@ RESULT.USER_LOGIN.jwt = jwtStr;
 return res.send(RESULT.USER_LOGIN);
 ~~~
 
-# 5 商品模块
+# 6 商品模块
 
-## 5.1 商品表
+## 6.1 商品表
 
 | 字段    | 数据类型 | 说明             |
 | ------- | -------- | ---------------- |
@@ -496,9 +508,9 @@ return res.send(RESULT.USER_LOGIN);
 | fileurl | 字符串   | 图片地址         |
 | content | 文本     | 商品描述信息     |
 
-## 5.2 商品列表
+## 6.2 商品列表
 
-### 5.2.1 接口功能
+### 6.2.1 接口功能
 
 接口功能：查看所有商品信息，并同时支持分页与搜索功能
 
@@ -554,7 +566,7 @@ return res.send(RESULT.USER_LOGIN);
 }
 ~~~
 
-### 5.2.2 实现步骤
+### 6.2.2 实现步骤
 
 - [ ] 导入相关模块
 - [ ] 接收参数并验证有效性
@@ -562,21 +574,21 @@ return res.send(RESULT.USER_LOGIN);
 - [ ] 查询数据总数
 - [ ] 查询当前页数据并返回
 
-### 5.2.3 导入相关模块
+### 6.2.3 导入相关模块
 
 ~~~javascript
 let CONFIG = require('../config/config');
 let db = require('../config/db');
 ~~~
 
-### 5.2.4 接收参数并验证有效性
+### 6.2.4 接收参数并验证有效性
 
 ~~~javascript
 let page = req.query.page || 1;
 let search = req.query.search || '';
 ~~~
 
-### 5.2.5 定义对应分页参数
+### 6.2.5 定义对应分页参数
 
 ~~~javascript
 let total = 0;
@@ -585,7 +597,7 @@ let pageCount = 0;
 let pageSize = 6;
 ~~~
 
-### 5.2.6 查询数据总数
+### 6.2.6 查询数据总数
 
 ~~~javascript
 let sqlStr = `select count(*) as num from goods where name like '%${search}%'`;
@@ -593,7 +605,7 @@ db.query(sqlStr, (err, rst) => {
 });
 ~~~
 
-### 5.2.7 查询当前页数据并返回
+### 6.2.7 查询当前页数据并返回
 
 ~~~javascript
 sqlStr = `select * from goods where name like '%${search}%' limit ${offset},${pageSize}`;
@@ -601,9 +613,9 @@ db.query(sqlStr, (err, rst) => {
 });
 ~~~
 
-## 5.3 查看商品信息
+## 6.3 查看商品信息
 
-### 5.3.1 接口功能
+### 6.3.1 接口功能
 
 接口功能：查看当前商品信息
 
@@ -641,26 +653,26 @@ db.query(sqlStr, (err, rst) => {
 }
 ~~~
 
-### 5.3.2 实现步骤
+### 6.3.2 实现步骤
 
 - [ ] 导入相关模块
 - [ ] 接收参数并验证有效性
 - [ ] 查询对应商品信息并返回
 
-### 5.3.3 导入相关模块
+### 6.3.3 导入相关模块
 
 ~~~javascript
 let CONFIG = require('../config/config');
 let db = require('../config/db');
 ~~~
 
-### 5.3.4 接收参数并验证有效性
+### 6.3.4 接收参数并验证有效性
 
 ~~~javascript
 let id = req.query.id;
 ~~~
 
-### 5.3.5 查询对应商品信息并返回
+### 6.3.5 查询对应商品信息并返回
 
 ~~~javascript
 let sqlStr = `select * from goods where id=${id}`;
@@ -668,17 +680,17 @@ db.query(sqlStr, (err, rst) => {
 });
 ~~~
 
-# 6 购物车模块
+# 7 购物车模块
 
-## 6.1 购物车表
+## 7.1 购物车表
 
 
 
-## 6.2 添加购物车
+## 7.2 添加购物车
 
-### 6.2.1 接口功能
+### 7.2.1 接口功能
 
-### 6.2.2 实现步骤
+### 7.2.2 实现步骤
 
 - [ ] 导入相关模块
 - [ ] 接收参数并判断有效性
@@ -686,14 +698,14 @@ db.query(sqlStr, (err, rst) => {
 - [ ] 判断商品是否已添加
 - [ ] 插入数据库并返回结果
 
-### 6.2.3 导入相关模块
+### 7.2.3 导入相关模块
 
 ~~~javascript
 let CONFIG = require('../config/config');
 let db = require('../config/db');
 ~~~
 
-### 6.2.4 接收参数并判断有效性
+### 7.2.4 接收参数并判断有效性
 
 ~~~javascript
 const params = {
@@ -704,23 +716,23 @@ const params = {
 };
 ~~~
 
-### 6.2.5 判断商品ID有效性
+### 7.2.5 判断商品ID有效性
 
 ~~~javascript
-let sqlStr = "select id from goods where id=?";
-db.query(sqlStr, [params.gid], (err, rst) => {
+let sqlStr = `select id from goods where id=${id}`;
+db.query(sqlStr,  (err, rst) => {
 });
 ~~~
 
-### 6.2.6 判断商品是否已添加
+### 7.2.6 判断商品是否已添加
 
 ~~~javascript
-let sqlStr = "select * from cart where gid=? and userid=?";
-db.query(sqlStr, [params.gid, params.userid], (err, rst) => {
+let sqlStr = `select * from cart where gid=${gid} and uid=${uid}`;
+db.query(sqlStr, (err, rst) => {
 });
 ~~~
 
-### 6.2.7 插入数据库并返回结果
+### 7.2.7 插入数据库并返回结果
 
 ~~~javascript
 let sqlStr = "insert into cart set ?";
@@ -728,30 +740,30 @@ db.query(sqlStr, params, (err, rst) => {
 });
 ~~~
 
-## 6.3 查询购物车中所有商品
+## 7.3 查询购物车中所有商品
 
-### 6.3.1 接口功能
+### 7.3.1 接口功能
 
-### 6.3.2 实现步骤
+### 7.3.2 实现步骤
 
 - [ ] 导入相关模块
 - [ ] 获取用户身份
 - [ ] 查询该用户购物车中所有商品
 
-### 6.3.3 导入相关模块
+### 7.3.3 导入相关模块
 
 ~~~javascript
 let CONFIG = require('../config/config');
 let db = require('../config/db');
 ~~~
 
-### 6.3.4 获取用户身份
+### 7.3.4 获取用户身份
 
 ~~~
 
 ~~~
 
-### 6.3.5 查询该用户购物车中所有商品
+### 7.3.5 查询该用户购物车
 
 ~~~javascript
 let sqlStr = `select * from where uid=${userid} and goods.id=cart.uid`;
@@ -759,9 +771,69 @@ db.query(sqlStr, params, (err, rst) => {
 });
 ~~~
 
-## 6.4 移除购物车中某件商品
+## 7.4 移除购物车中某件商品
 
-## 6.5 修改购物车商品数量
+### 7.4.1 接口功能
 
-# 7 总结
+### 7.4.2 实现步骤
+
+- [ ] 导入相关模块
+- [ ] 接收参数并验证有效性
+- [ ] 移除该用户购物车中对应商品
+
+### 7.4.3 导入相关模块
+
+~~~javascript
+let CONFIG = require('../config/config');
+let db = require('../config/db');
+~~~
+
+### 7.4.4 接收参数并验证有效性
+
+~~~
+
+~~~
+
+
+
+### 7.4.5 移除该用户购物车中对应商品
+
+~~~javascript
+let sqlStr=`delete from cart where gid=${gid} and uid=${uid}`;
+db.query(sqlStr,(err,rst)=>{    
+});
+~~~
+
+## 7.5 修改购物车商品数量
+
+### 7.5.1 接口功能
+
+### 7.5.2 实现步骤
+
+- [ ] 导入相关模块
+- [ ] 接收参数并验证有效性
+- [ ] 修改商品数量
+
+### 7.5.3 导入相关模块
+
+~~~javascript
+let CONFIG = require('../config/config');
+let db = require('../config/db');
+~~~
+
+### 7.5.4 接收参数并验证有效性
+
+~~~
+
+~~~
+
+### 7.5.5 修改商品数量
+
+~~~javascript
+let sqlStr=`update from cart set num=${num} where uid=${uid} and gid=${gid}`;
+db.query(sqlStr,(err,rst)=>{
+})
+~~~
+
+# 8 总结
 
