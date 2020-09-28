@@ -30,7 +30,7 @@ function add(req, res) {
 
     //添加至购物车
     sqlStr = "insert into cart set ?";
-    db.query(sqlStr, [], (err, rst) => {
+    db.query(sqlStr, params, (err, rst) => {
         if (err) {
             return rst.send(CONFIG.FAIL);
         }
@@ -45,14 +45,36 @@ function getlist(req, res) {
     let userid = '';
 
     let sqlStr = `select * from where uid=${userid} and goods.id=cart.uid`;
+    db.query(sqlStr, (err, rst) => {
+
+    });
 }
 
 function remove(req, res) {
+    let CONFIG = require('../config/config');
+    let db = require('../config/db');
 
+    let uid = 1;
+    let gid = req.query.uid;
+
+    let sqlStr = `delete from cart where uid=${uid} and gid=${gid}`;
+    db.query(sqlStr, (err, rst) => {
+        res.send();
+    });
 }
 
 function edit(req, res) {
+    let CONFIG = require('../config/config');
+    let db = require('../config/db');
 
+    let uid = 1;
+    let gid = req.query.gid;
+    let num = req.query.num;
+
+    let sqlStr = `update cart set num=${num} where uid=${uid} and gid=${gid}`;
+    db.query(sqlStr, (err, rst) => {
+        res.send();
+    });
 }
 
 module.exports = {
