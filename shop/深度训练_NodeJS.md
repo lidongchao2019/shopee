@@ -100,6 +100,14 @@ npm i cors@2.8.5
 npm i jsonwebtoken express-jwt
 ~~~
 
+- [ ] **安装bcryptjs模块**
+
+在根目录下，运行以下命令，安装bcryptjs模块
+
+~~~bash
+npm i bcryptjs@2.4.3
+~~~
+
 ## 2.4 初始化项目配置文件
 
 为了便于程序后期扩展和维护，我们将一些公共信息存放在配置文件目录下，如数据库配置信息：
