@@ -4,17 +4,22 @@ const app = express();
 const cors = require('cors');
 app.use(cors());
 
-app.use(express.urlencoded({ extended: false }));
+const expressJWT = require('express-jwt');
+const CONFIG = require('./config/config');
+app.use(expressJWT({ secret: CONFIG.JWT_SECRET }).unless({
+                path: [/\/] }));
 
-const memberRouter = require('./router/member');
-app.use('/api', memberRouter);
+                        app.use(express.urlencoded({ extended: false }));
 
-const goodsRouter = require('./router/goods');
-app.use('/api', goodsRouter);
+                        const memberRouter = require('./router/member');
+                        app.use('/api', memberRouter);
 
-const cartRouter = require('./router/cart');
-app.use('/api', cartRouter);
+                        const goodsRouter = require('./router/goods');
+                        app.use('/api', goodsRouter);
 
-app.listen(80, function() {
-    console.log('server running at http://localhost:80...');
-});
+                        const cartRouter = require('./router/cart');
+                        app.use('/api', cartRouter);
+
+                        app.listen(80, function() {
+                            console.log('server running at http://localhost:80...');
+                        });

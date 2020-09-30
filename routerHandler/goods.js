@@ -25,7 +25,14 @@ function getlist(req, res) {
     //查询当前页数据
     sqlStr = `select * from goods where name like '%${search}%' limit ${offset},${pageSize}`;
     db.query(sqlStr, (err, rst) => {
-        res.send(rst);
+        CONFIG.SUCCESS.data = rst;
+        CONFIG.SUCCESS.page = {
+            pageNo: page,
+            pageCount: pageCount,
+            total: total,
+            pageSize: pageSize
+        }
+        res.send(CONFIG.SUCCESS);
     });
 
 
@@ -38,7 +45,7 @@ function getinfo(req, res) {
     let db = require('../config/db');
 
     let id = req.query.id;
-    if (id == NULL) {
+    if (id == null) {
         return res.send(CONFIG.PARAM_MISSING);
     }
     if (id == '') {

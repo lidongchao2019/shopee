@@ -2,8 +2,8 @@ const config = {
     SUCCESS: { code: 2000, msg: '操作成功' },
     FAIL: { code: 4000, msg: '操作失败' },
 
-    USER_LOGIN: { code: 2001, msg: '注册成功' },
-    USER_REGISTER: { code: 2002, msg: '登录成功' },
+    USER_LOGIN: { code: 2001, msg: '登录成功' },
+    USER_REGISTER: { code: 2002, msg: '注册成功' },
     RESULT_NULL: { code: 2003, msg: '没有数据' },
 
     PARAM_MISSING: { code: 4101, msg: '缺少参数' },

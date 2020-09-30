@@ -97,7 +97,7 @@ npm i cors@2.8.5
 在根目录下，运行以下命令，安装jsonwebtoken和express-jwt模块
 
 ~~~bash
-npm i jsonwebtoken express-jwt
+npm i jsonwebtoken express-jwt@5.3.3
 ~~~
 
 - [ ] **安装bcryptjs模块**
