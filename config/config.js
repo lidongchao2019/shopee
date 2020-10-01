@@ -18,6 +18,7 @@ const config = {
     USER_PWD_ERROR: { code: 4203, msg: '密码错误' },
     USER_EXPIR: { code: 4204, msg: '登录时间过期' },
     USER_ERROR: { code: 4205, msg: '用户身份错误' },
+    USER_TOKEN_INVALID:{ code: 4206,msg:'用户身份认证失败'},
 
     JWT_SECRET: 'itheima',
     JWT_EXPIR: '2h'
